@@ -1,17 +1,20 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StatusBar, StyleSheet } from 'react-native';
+import Section from './containers/Section/Section';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
 
+const List = () => <View style={{ flex: 4, backgroundColor: 'aqua' }} />;
+
 const NYTApp: React.FC = () => (
   <View style={styles.container}>
-    <Text>Hello World</Text>
+    <StatusBar backgroundColor="transparent" translucent barStyle="light-content" />
+    <Section />
+    <List />
   </View>
 );
 
