@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#4A4A4A',
+    fontWeight: 'bold',
   },
   selectedText: {
     color: 'blue',
