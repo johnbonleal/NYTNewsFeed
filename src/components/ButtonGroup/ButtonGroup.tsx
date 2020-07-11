@@ -1,5 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
+import map from 'lodash/map';
 import Button from '../Button/Button';
 import styles from './styles';
 
@@ -10,19 +11,24 @@ interface DataProps {
 
 interface ButtonGroupProps {
   data: DataProps[];
-  onPress: () => void;
+  onItemSelected: (item: string) => void;
+  itemSelected: string;
 }
 
-const ButtonGroup: React.SFC<ButtonGroupProps> = ({ data, onPress }) => {
-  return (
-    <View style={styles.container}>
-      {data.length > 0 &&
-        data.map((item) => {
-          const { id, title } = item;
-          return <Button key={id.toString()} text={title} onPress={onPress} />;
-        })}
-    </View>
-  );
-};
+const ButtonGroup: React.SFC<ButtonGroupProps> = ({ data, onItemSelected, itemSelected }) => (
+  <View style={styles.container}>
+    {map(data, (item) => {
+      const { id, title } = item;
+      return (
+        <Button
+          key={id.toString()}
+          text={title}
+          onItemSelected={() => onItemSelected(title)}
+          isSelected={title === itemSelected}
+        />
+      );
+    })}
+  </View>
+);
 
 export default ButtonGroup;

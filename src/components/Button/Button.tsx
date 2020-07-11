@@ -1,15 +1,18 @@
 import React from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import styles from './styles';
 
 interface ButtonProps {
   text: string;
-  onPress: () => void;
+  onItemSelected: () => void;
+  isSelected: boolean;
 }
 
-const Button: React.SFC<ButtonProps> = ({ text, onPress }) => (
-  <TouchableOpacity style={styles.container} onPress={onPress}>
-    <Text>{text}</Text>
+const Button: React.SFC<ButtonProps> = ({ text, onItemSelected, isSelected }) => (
+  <TouchableOpacity
+    style={StyleSheet.flatten([styles.container, isSelected && styles.selectedContainer])}
+    onPress={onItemSelected}>
+    <Text style={StyleSheet.flatten([styles.text, isSelected && styles.selectedText])}>{text}</Text>
   </TouchableOpacity>
 );
 
