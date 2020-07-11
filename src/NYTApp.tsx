@@ -1,14 +1,13 @@
 import React from 'react';
 import { View, StatusBar, StyleSheet } from 'react-native';
 import Section from './containers/Section/Section';
+import List from './containers/List/List';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
 });
-
-const List = () => <View style={{ flex: 4, backgroundColor: 'aqua' }} />;
 
 const NYTApp: React.FC = () => (
   <View style={styles.container}>
