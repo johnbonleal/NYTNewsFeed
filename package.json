@@ -16,9 +16,12 @@
     "lint": "eslint --ext .tsx --ext .ts src/"
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.11.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.7.0",
     "@react-navigation/stack": "^5.7.0",
+    "apisauce": "^1.1.1",
+    "humps": "^2.0.1",
     "lodash": "^4.17.19",
     "react": "16.13.1",
     "react-native": "0.63.0",
@@ -30,15 +33,18 @@
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0",
-    "redux-saga": "^1.1.3"
+    "redux-saga": "^1.1.3",
+    "typesafe-actions": "^5.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@babel/runtime": "^7.8.4",
     "@react-native-community/eslint-config": "^1.1.0",
+    "@types/humps": "^2.0.0",
     "@types/lodash": "^4.14.157",
     "@types/react": "^16.9.42",
     "@types/react-native": "^0.62.18",
+    "@types/react-redux": "^7.1.9",
     "@typescript-eslint/eslint-plugin": "^3.6.0",
     "@typescript-eslint/parser": "^3.6.0",
     "babel-jest": "^25.1.0",
@@ -51,6 +57,10 @@
     "prettier": "^2.0.5",
     "react-native-typescript-transformer": "^1.2.13",
     "react-test-renderer": "16.13.1",
+    "reactotron-apisauce": "^3.0.0",
+    "reactotron-react-native": "^5.0.0",
+    "reactotron-redux": "^3.1.3",
+    "reactotron-redux-saga": "^4.2.3",
     "typescript": "^3.9.6"
   },
   "jest": {
