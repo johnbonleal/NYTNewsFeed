@@ -1,4 +1,4 @@
-# NYTNewsFeed App v3.2
+# NYTNewsFeed App
 
 Get your daily top stories from well-known American newspaper company, New York Times.
 
