@@ -23,7 +23,7 @@ const ButtonGroup: React.SFC<ButtonGroupProps> = ({ data, onItemSelected, itemSe
         <Button
           key={id.toString()}
           text={title}
-          onItemSelected={() => onItemSelected(title)}
+          onPress={() => onItemSelected(title)}
           isSelected={title === itemSelected}
         />
       );
