@@ -1,16 +1,11 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import Section from '../../containers/Section/Section';
 import List from '../../containers/List/List';
 import { AppState } from '../../redux/store';
 import { getStoryBySection } from '../../redux/selectors/story-selector';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+import styles from './styles';
 
 const Home = ({articles}) => {
   return (
