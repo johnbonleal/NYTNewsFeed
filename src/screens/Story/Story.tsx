@@ -10,11 +10,12 @@ const Story: React.SFC = ({route}) => {
   const {item} = route.params;
   const title = get(item, 'title');
   const author = get(item, 'byline', 'By --');
+  const backgroundImage = get(item, 'multimedia[0].url', undefined);
   const publishedDate = moment(get(item, 'published_date')).fromNow();
   const content = get(item, 'abstract');
   return (
     <View style={styles.container}>
-      <HeaderImage />
+      <HeaderImage image={backgroundImage}/>
       <Article title={title} author={author} content={content} date={publishedDate} />
     </View>
   );

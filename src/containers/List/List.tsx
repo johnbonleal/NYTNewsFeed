@@ -13,8 +13,17 @@ const List: React.SFC = ({ data }) => {
     const title = get(item, 'title');
     const author = get(item, 'byline', 'By --');
     const publishedDate = moment(get(item, 'published_date')).fromNow();
+    const backgroundImage = get(item, 'multimedia[0].url', undefined);
     const onPress = () => navigation.navigate('Story', {item});
-    return <Thumbnail onPress={onPress} title={title} author={author} date={publishedDate} />;
+    return (
+      <Thumbnail
+        onPress={onPress}
+        title={title}
+        author={author}
+        date={publishedDate}
+        image={backgroundImage}
+      />
+    );
   };
   return (
     <View style={styles.container}>
