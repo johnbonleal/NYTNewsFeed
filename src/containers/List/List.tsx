@@ -1,57 +1,17 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Image, Dimensions, Text } from 'react-native';
+import { View, FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Divider, Dropdown } from '../../components';
-import image from '../../resources/images';
-
-const { width, height } = Dimensions.get('window');
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 4,
-    backgroundColor: 'cyan',
-  },
-  dropdownContainer: {
-    flex: 0,
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 24,
-    backgroundColor: 'deepskyblue',
-  },
-});
+import Thumbnail from './Thumbnail/Thumbnail';
+import styles from './styles';
 
 const data = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }];
 
-const Thumbnail = () => (
-  <View
-    style={{
-      backgroundColor: 'white',
-      height: height / 5,
-      width: '100%',
-      borderRadius: 8,
-      flexDirection: 'row',
-      padding: 16,
-    }}>
-    <View style={{ flex: 1 }}>
-      <Image source={image.placeholder} style={{ flex: 1, height: undefined, width: undefined }} />
-    </View>
-    <View
-      style={{
-        flex: 2,
-        justifyContent: 'space-around',
-        marginLeft: 16,
-      }}>
-      <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
-        Lorem Ipsum dolor sit amet, consectetur
-      </Text>
-      <Text>By: Reporter XYZ</Text>
-      <Text>Published: 10 minutes ago</Text>
-    </View>
-  </View>
-);
-
-const List = () => {
+const List: React.SFC = () => {
+  const navigation = useNavigation();
   const renderItem = ({item}) => {
-    return <Thumbnail />;
+    const onPress = () => navigation.navigate('Story', {item});
+    return <Thumbnail onPress={onPress} />;
   };
   return (
     <View style={styles.container}>
