@@ -12,6 +12,10 @@ const styles = StyleSheet.create({
     padding: 24,
     backgroundColor: '#75c1e2',
   },
+  contentContainer: {
+    flexGrow: 1,
+    padding: 16,
+  },
 });
 
 export default styles;
