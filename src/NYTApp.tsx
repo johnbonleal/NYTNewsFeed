@@ -1,17 +1,17 @@
 import React from 'react';
-import { View, StatusBar, StyleSheet } from 'react-native';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import AppNavigator from './navigators/AppNavigator';
+import configureStore from './redux/store';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+const { store, persistor } = configureStore();
 
 const NYTApp: React.FC = () => (
-  <View style={styles.container}>
-    <AppNavigator />
-  </View>
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <AppNavigator />
+    </PersistGate>
+  </Provider>
 );
 
 export default NYTApp;
