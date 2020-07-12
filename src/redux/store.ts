@@ -3,6 +3,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import autoMergeLevel1 from 'redux-persist/lib/stateReconciler/autoMergeLevel1';
 import createSagaMiddleware from 'redux-saga';
 import AsyncStorage from '@react-native-community/async-storage';
+import { createNetworkMiddleware } from 'react-native-offline';
 import RootReducer from './reducers/root-reducer';
 import RootSaga from './sagas/root-saga';
 import { reactotron } from '../configs/reactotron-config';
@@ -18,6 +19,11 @@ export default () => {
     sagaMonitor = reactotron.createSagaMonitor();
     enhancers.push(reactotron.createEnhancer());
   }
+
+  const networkMiddleware = createNetworkMiddleware({
+    queueReleaseThrottle: 200,
+  });
+  middlewares.push(networkMiddleware);
 
   const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
   middlewares.push(sagaMiddleware);

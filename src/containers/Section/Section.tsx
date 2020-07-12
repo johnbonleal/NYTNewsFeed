@@ -5,13 +5,14 @@ import { Dispatch, AnyAction } from 'redux';
 import { ButtonGroup } from '../../components';
 import { FetchStoryActions, SelectedSectionAction } from '../../redux/actions/story-action';
 import { getSelectedSection } from '../../redux/selectors/story-selector';
+import { getNetworkConnectivity } from '../../redux/selectors/network-selector';
 import { data1, data2 } from './data';
 import styles from './styles';
 
-const Section: React.FC = ({ fetchStories, updateSelectedSection, selectedSection }) => {
+const Section: React.FC = ({ fetchStories, updateSelectedSection, selectedSection, isConnected }) => {
   const [section, setSelectedSection] = React.useState(selectedSection);
   React.useEffect(() => {
-    fetchStories(section);
+    if (isConnected) fetchStories(section);
     updateSelectedSection(section);
   }, [section]);
   const handleSelectedCategory = (item: string) => {
@@ -40,6 +41,7 @@ const Section: React.FC = ({ fetchStories, updateSelectedSection, selectedSectio
 
 const mapStateToProps = (state: AppState) => ({
   selectedSection: getSelectedSection(state),
+  isConnected: getNetworkConnectivity(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({
