@@ -10,10 +10,11 @@ function* fetchStories(action) {
     const response = yield call(API.FETCH_STORY, lowercase(payload), {
       'api-key': AppConfig.api.key,
     });
-
     if (response.ok) {
       const { data } = response;
-      yield put(FetchStoryActions.successFetchStory({ section: data.section, data: data.results }));
+      // Some sections from response are inconsistent so we have to fix this
+      const sectionSave = data.section === 'World News' ? 'World' : data.section;
+      yield put(FetchStoryActions.successFetchStory({ section: sectionSave, data: data.results }));
       return;
     }
     yield put(FetchStoryActions.failureFetchStory('Error'));

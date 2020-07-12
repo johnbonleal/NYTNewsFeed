@@ -11,7 +11,7 @@ const AppStack = createStackNavigator();
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <AppStack.Navigator initialRouteName="Story" headerMode="none">
+      <AppStack.Navigator initialRouteName="Home" headerMode="none">
         <AppStack.Screen name="Home" component={HomeScreen} />
         <AppStack.Screen name="Story" component={StoryScreen} />
       </AppStack.Navigator>
