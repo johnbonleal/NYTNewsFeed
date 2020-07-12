@@ -27,4 +27,4 @@ const Thumbnail: React.FC<ThumbnailProps> = ({ onPress, title, author, date, ima
   );
 }
 
-export default Thumbnail;
+export default React.memo(Thumbnail);
