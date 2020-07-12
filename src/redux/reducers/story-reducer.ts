@@ -1,9 +1,10 @@
-import { FetchStoryTypes } from '../actions/story-action';
+import { FetchStoryTypes, SelectedSectionType } from '../actions/story-action';
 
 const INITIAL_STATE = {
   isLoading: false,
   hasError: false,
-  data: [],
+  selectedSection: 'World',
+  data: {},
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -19,7 +20,10 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         isLoading: false,
         hasError: false,
-        data: [...state.data, payload],
+        data: {
+          ...state.data,
+          [payload.section]: payload.data,
+        },
       };
     case FetchStoryTypes.FAILURE:
       return {
@@ -27,6 +31,11 @@ export default (state = INITIAL_STATE, action) => {
         isLoading: false,
         hasError: true,
       };
+    case SelectedSectionType:
+      return {
+        ...state,
+        selectedSection: payload,
+      }
     default:
       return state;
   }

@@ -10,14 +10,15 @@ function* fetchStories(action) {
     const response = yield call(API.FETCH_STORY, lowercase(payload), {
       'api-key': AppConfig.api.key,
     });
-    console.tron('Response: ', response);
+
     if (response.ok) {
-      const {data} = response;
-      yield put(FetchStoryActions.successFetchDeals(data.results));
+      const { data } = response;
+      yield put(FetchStoryActions.successFetchStory({ section: data.section, data: data.results }));
+      return;
     }
-    yield put(FetchStoryActions.failureFetchDeals('Error'));
+    yield put(FetchStoryActions.failureFetchStory('Error'));
   } catch (error) {
-    yield put(FetchStoryActions.failureFetchDeals('Error'));
+    yield put(FetchStoryActions.failureFetchStory('Error'));
   }
 }
 
