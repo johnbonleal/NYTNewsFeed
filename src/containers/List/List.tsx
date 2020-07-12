@@ -1,18 +1,20 @@
 import React from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import get from 'lodash/get';
-import { Divider, Dropdown } from '../../components';
+import moment from 'moment';
+import { Divider, Dropdown, ListEmpty } from '../../components';
 import Thumbnail from './Thumbnail/Thumbnail';
 import styles from './styles';
 
-const List: React.SFC = ({data}) => {
+const List: React.SFC = ({ data }) => {
   const navigation = useNavigation();
-  const renderItem = ({item}) => {
+  const renderItem = ({ item }) => {
     const title = get(item, 'title');
-    const author = get(item, 'byline');
+    const author = get(item, 'byline', 'By --');
+    const publishedDate = moment(get(item, 'published_date')).fromNow();
     const onPress = () => navigation.navigate('Story', {item});
-    return <Thumbnail onPress={onPress} title={title} author={author} />;
+    return <Thumbnail onPress={onPress} title={title} author={author} date={publishedDate} />;
   };
   return (
     <View style={styles.container}>
@@ -25,8 +27,9 @@ const List: React.SFC = ({data}) => {
         <FlatList
           keyExtractor={(item, index) => `${item.section}-${index}`}
           data={data}
-          contentContainerStyle={{ flexGrow: 1, padding: 16 }}
+          contentContainerStyle={styles.contentContainer}
           ItemSeparatorComponent={() => <View style={{ height: 14 }} />}
+          ListEmptyComponent={() => <ListEmpty />}
           renderItem={renderItem}
         />
       </View>
