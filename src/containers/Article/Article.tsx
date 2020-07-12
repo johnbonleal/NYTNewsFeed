@@ -8,9 +8,10 @@ interface ComponentProps {
   title: string;
   author: string;
   content: string;
+  date: string;
 }
 
-const Article: React.SFC<ComponentProps> = ({ title, author, content }) => {
+const Article: React.SFC<ComponentProps> = ({ title, author, content, date }) => {
   const navigation = useNavigation();
   const redirectToHome = () => navigation.navigate('Home');
   return (
@@ -19,7 +20,7 @@ const Article: React.SFC<ComponentProps> = ({ title, author, content }) => {
         <Text style={styles.title}>{title}</Text>
         <View style={styles.subtitleContainer}>
           <Text style={StyleSheet.flatten([styles.subtitle, { marginBottom: 5 }])}>{author}</Text>
-          <Text style={styles.subtitle}>Published 10 minutes ago</Text>
+          <Text style={styles.subtitle}>{`Published ${date}`}</Text>
         </View>
         <Text style={styles.content}>{content}</Text>
       </View>
